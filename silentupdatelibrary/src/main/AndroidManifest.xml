@@ -1,0 +1,35 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.dlc.silentupdatelibrary">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission
+        android:name="android.permission.INSTALL_PACKAGES"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.HIDE_INSTALL_PACKAGES" />
+
+    <permission
+        android:name="android.permission.INSTALL_PACKAGES"
+        android:protectionLevel="signature|privileged" />
+    <permission
+        android:name="android.permission.HIDE_INSTALL_PACKAGES"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="android.permission.HIDE_UNINSTALL_PACKAGES"
+        android:protectionLevel="normal" />
+
+    <application>
+
+        <receiver android:name=".PackageReplacedReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" />
+            </intent-filter>
+
+        </receiver>
+    </application>
+</manifest>
